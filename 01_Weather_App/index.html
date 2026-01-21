@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App by Sari</title>
+    <title>Weather App</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -40,7 +40,7 @@
 
 <script>
 
-    const apiKey = "42ded9a0c271c1fb8de468926d3c7067";
+    const apiKey = "[your API key]";
     const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
     const searchBox = document.querySelector(".search input");
@@ -49,13 +49,18 @@
 
     async function checkWeather(city) {
         const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+        const data = await response.json();
 
-        if(response.status == 404){
+        if (data.cod === 401) {
+            alert("API key invalid");
+            return;
+
+        } else if (data.cod === "404") {
             document.querySelector(".error").style.display = "block";
             document.querySelector(".weather").style.display = "none";
-        }else{
-            var data = await response.json();
 
+        } else {
+            // Data valid semua
             document.querySelector(".temp").innerHTML = Math.round(data.main.temp)  + "°C";
             document.querySelector(".city").innerHTML = data.name;
             document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
@@ -86,6 +91,11 @@
         checkWeather(searchBox.value);
     })
 
+    searchBox.addEventListener("keypress", function(event) {
+        if(event.key === "Enter") {
+            checkWeather(searchBox.value);
+        }
+    });
 
 </script>
 
