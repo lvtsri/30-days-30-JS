@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Random Password</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Generate <br> <span>Random Password</span></h1>
+        <div class="display">
+            <input type="text" id="password" placeholder="Password">
+            <img src="css/img/copy.png" alt="copy" onclick="copyPassword()">
+        </div>
+        <button onclick="createPassword()"><img src="css/img/create.png"> Generate Password</button>
+    </div>
+
+    <script>
+
+        const passwordBox = document.getElementById("password");
+        const length = 12;
+
+        //index dimulai dari 0
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //length 26, fyi length beda dgn index
+        const lowerCase = "abcdefghijklmnopqrstuvwxyz"; //length 26
+        const number = "0123456789";                    //length 10
+        const symbol = "~!@#$%^&*()-_+={}[]|<>/?'`";    //length 26
+
+        const allChars = upperCase + lowerCase + number + symbol;   //length 88
+
+        function createPassword(){
+            let password = "";      //nyiapin gelas kosong
+            password += upperCase[Math.floor(Math.random() * upperCase.length)];    //Math.floor membulatkan angka ke bawah, ex: 5.88 -> 5
+            password += lowerCase[Math.floor(Math.random() * lowerCase.length)];    //Math.random() nge-generate angka random (0 – 0.999)
+            password += number[Math.floor(Math.random() * number.length)];          
+            //ex skenario: Math.random() generate angka 0.56 lalu dikali number.length(10) sehingga 0.56 * 10 = 5.6 lalu dibulatin oleh Math.floor menjadi 5. Dan hasil akhirnya number[5] sehingga dipilihlah urutan index ke 5 pada variabel number, yaitu 5
+            password += symbol[Math.floor(Math.random() * symbol.length)];
+            //skenario lain: Math.random generate angka 0.77 kemudian dikali symbol.length(26) => 0.77 * 26 = 20.02, dibulatkan Math.floor jadi 20. Hasil akhir adalah symbol[20], sehingga terambil simbol "<" (ingat utk ngitungnya dari angka 0)
+
+            while(length > password.length){    //terus ngeloop jika length tujuan (12) lebih besar dari jumlah pw terkini adalah true, jadi bakal stop kalo 12 > 12 karena 12 > 12 = false
+                password += allChars[Math.floor(Math.random() * allChars.length)];
+            }
+            //hasil akhir password adalah 4 karakter awal yg disengaja (upperCase, lowerCase, number, symbol), lalu sisanya karakter acak oleh password allChars
+            passwordBox.value = password;   //memberi value="" di <input>
+            
+        }
+
+        function copyPassword() {
+            if(!passwordBox.value){
+                alert("Please generate first");
+            }
+            navigator.clipboard.writeText(passwordBox.value)    //"Browser(navigator), tuliskan(writeText) value yang ada di input(passwordBox) ke clipboard"
+            .then(() => {               //nunggu sejak awal function dijalankan, apakah berhasil/gagal
+                console.log("Copied!"); //respon yang diberi jika berhasil
+            })
+            .catch(err => {
+                console.error("Copy failed", err);  //respon jika gagal
+            });
+        }
+
+    </script>
+</body>
+</html>
