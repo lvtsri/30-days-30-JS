@@ -54,7 +54,8 @@
                 alert("Please generate first");
             }
             navigator.clipboard.writeText(passwordBox.value)    //"Browser(navigator), tuliskan(writeText) value yang ada di input(passwordBox) ke clipboard"
-            .then(() => {               //nunggu sejak awal function dijalankan, apakah berhasil/gagal
+            .then(() => {               //dia cuma terikat sama kode diatasnya, yaitu navigator.blabla. Dan bakal kasih response sesuai hasil yang diberi oleh navigator.clipboard.~ itu.
+                                        // then & catch itu nempel ke kode diatas dan memberi janji akan hasil yang diberikan
                 console.log("Copied!"); //respon yang diberi jika berhasil
             })
             .catch(err => {

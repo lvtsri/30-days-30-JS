@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    background-color: #0b0423;
+    color: #fff;
+}
+
+h2{
+    text-align: center;
+    margin: 40px;
+}
+
+.container{
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#left, #right{
+    width: 300px;
+    min-height: 400px;          /*fyi heightnya menyesuaikan karena pake min-height, defaultnya min-height menyesuaikan height */
+    margin: 20px;
+    border: 2px dashed #fff;
+    border-radius: 20px;
+}
+
+.list{
+    background-color: #e91e63;
+    height: 60px;
+    margin: 30px;
+    color: #ffff;
+    display: flex;
+    align-items: center;
+    cursor: grab;
+}
+
+.list img{
+    width: 20px;
+    margin-right: 15px;
+    margin-left: 10px;
+}
