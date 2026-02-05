@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6f7fb;
+}
+
+.container{
+    background: #fff;
+    padding: 2rem 7rem;         /* px = rem × font-size(px). Ex: Font saat ini 10px, 2 rem berarti 2 × 10 = 20, sehingga 2 rem ini setara 20px */
+    border-radius: 14px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container.start .user_result{
+    transform-origin: left;
+    animation: userShake 0.7s ease infinite;
+}
+@keyframes userShake {
+    50%{
+        transform: rotate(-10deg);
+    }
+}
+
+.container.start .cpu_result{
+    transform-origin: right;
+    animation: cpuShake 0.7s ease infinite;
+}
+@keyframes cpuShake {
+    50%{
+        transform: rotate(10deg);
+    }
+}
+
+.container.start .options{
+    pointer-events: none;
+}
+
+.result_images{
+    display: flex;
+    column-gap: 7rem;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.result_images img{
+    width: 100px;
+}
+
+.user_result img{
+    transform: rotate(90deg);
+}
+
+.cpu_result img{
+    transform: rotate(-90deg);
+}
+
+.result{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 1.5rem;
+}
+
+.options{
+    display: flex;
+    align-items: center;
+    margin-top: 2.5rem;
+    justify-content: space-between;
+}
+
+.option{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.option:hover{
+    opacity: 1;
+}
+
+.option img{
+    width: 50px;
+}
+
+.option.active{
+    opacity: 1;
+}
+
+.option img{
+    pointer-events: none;
+}
+
+.option p{
+    font-size: 1.23rem;
+    margin-top: 1rem;
+    pointer-events: none;
+}

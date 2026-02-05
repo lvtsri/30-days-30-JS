@@ -5,7 +5,7 @@ box-sizing: border-box;
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(50deg, #333e69, #9dd0e4);
-    height: 100vh;
+    /* height: 100vh; */
     margin: 0;
     padding: 20px;
 }
